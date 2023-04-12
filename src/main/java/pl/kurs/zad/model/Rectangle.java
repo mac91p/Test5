@@ -1,7 +1,11 @@
 package pl.kurs.zad.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Objects;
 
+@JsonTypeName("Rectangle")
 public class Rectangle implements Shape {
 
     private double width;
@@ -11,15 +15,15 @@ public class Rectangle implements Shape {
         this.width = width;
         this.height = length;
     }
-
-    static Rectangle create(double width, double length) {
+    @JsonCreator
+    static Rectangle create(@JsonProperty("width") double width, @JsonProperty("length") double length) {
         return new Rectangle(width, length);
     }
-
+    @JsonProperty("width")
     public double getWidth() {
         return width;
     }
-
+    @JsonProperty("height")
     public double getHeight() {
         return height;
     }
@@ -45,11 +49,6 @@ public class Rectangle implements Shape {
     @Override
     public double calculatePerimeter() {
         return 2 * width + 2 * height;
-    }
-
-    @Override
-    public String getType() {
-        return getClass().getSimpleName();
     }
 
     @Override

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import pl.kurs.zad.model.Circle;
 import pl.kurs.zad.model.Rectangle;
-import pl.kurs.zad.model.Square;
 import pl.kurs.zad.model.Shape;
+import pl.kurs.zad.model.Square;
 import java.io.IOException;
 
 public class ShapeSerializer extends StdSerializer<Shape> {
@@ -17,7 +17,7 @@ public class ShapeSerializer extends StdSerializer<Shape> {
     @Override
     public void serialize(Shape shape, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("type", shape.getType());
+        jsonGenerator.writeStringField("type", shape.getClass().getSimpleName());
         if (shape instanceof Circle) {
             Circle circle = (Circle) shape;
             jsonGenerator.writeNumberField("radius", circle.getRadius());

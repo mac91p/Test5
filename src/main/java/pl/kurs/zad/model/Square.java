@@ -1,7 +1,12 @@
 package pl.kurs.zad.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import java.util.Objects;
 
+@JsonTypeName("Square")
 public class Square implements Shape {
 
     private double sideLength;
@@ -12,10 +17,12 @@ public class Square implements Shape {
     /**
      * Celowo użyty modifikator defaultowy
      * */
-    static Square create(double sideLength) {
+    @JsonCreator
+    static Square create(@JsonProperty("sideLength") double sideLength) {
         return new Square(sideLength);
     }
 
+    @JsonProperty("side_length")
     public double getSideLength() {
         return sideLength;
     }
@@ -41,11 +48,6 @@ public class Square implements Shape {
     @Override
     public double calculatePerimeter() {
         return 4 * sideLength;
-    }
-
-    @Override
-    public String getType() {
-        return getClass().getSimpleName();
     }
 
     @Override

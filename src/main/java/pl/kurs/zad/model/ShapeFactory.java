@@ -7,6 +7,7 @@ public class ShapeFactory {
 
     private static final Map<String, Shape> shapesCache = new HashMap<>();
 
+
     public static Square createSquare(double sideLength) {
         String key = "square_" + sideLength;
         if (shapesCache.containsKey(key)) {

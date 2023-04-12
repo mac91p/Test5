@@ -1,7 +1,11 @@
 package pl.kurs.zad.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Objects;
 
+@JsonTypeName("Circle")
 public class Circle implements Shape {
 
     private double radius;
@@ -10,10 +14,12 @@ public class Circle implements Shape {
         this.radius = radius;
     }
 
-    static Circle create(double radius) {
+    @JsonCreator
+    static Circle create(@JsonProperty("radius") double radius) {
         return new Circle(radius);
     }
 
+    @JsonProperty("radius")
     public double getRadius() {
         return radius;
     }
@@ -42,10 +48,6 @@ public class Circle implements Shape {
         return 2 * PI_NUMBER * radius;
     }
 
-    @Override
-    public String getType() {
-        return getClass().getSimpleName();
-    }
 
     @Override
     public String toString() {
